@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/img/logo.svg" alt="ATHAR logo" width="96" height="96">
+
 # ATHAR · أثر
 
 ### Earth System Trend Detective
