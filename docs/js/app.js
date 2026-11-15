@@ -4,7 +4,7 @@ const $ = s => document.querySelector(s);
 const [SERIES, CATALOG] = await Promise.all([fetch('data/series.json').then(r => r.json()), fetch('data/catalog.json').then(r => r.json())]);
 const PLACES = Object.keys(SERIES);
 const L = { // i18n
- en: { dir:'ltr', lang:'العربية', nav:{home:'Home',platform:'Platform',method:'Method',about:'About'},
+ en: { dir:'ltr', lang:'العربية', nav:{home:'Home',platform:'Platform',method:'Method',about:'About'}, oss:'Open source',
   h_eyebrow:'NASA Space Apps 2026 · Earth System Trend Detective', h_title:'Which Earth variables are really changing?',
   h_sub:'ATHAR reads 40+ years of NASA data, ranks what is changing, tests whether each trend is real, and writes the case file in plain English and Arabic.',
   cta:'Open the platform', cta2:'How it works',
@@ -37,7 +37,7 @@ const L = { // i18n
   about_t:'About', about_s:'Built by the Science Club, Military Technological College, for the NASA Space Apps Challenge 2026, Ibra local event (hosted by UTAS Ibra). Challenge: “Be an Earth System Trend Detective!”',
   team:'Team', data_t:'Data and credits', data:'Data: NASA POWER API (MERRA-2 and CERES SYN1deg), 1981–2025 annual means, bundled with this site so it works offline. Statistics: Mann (1945), Kendall (1975), Theil (1950), Sen (1968), Pettitt (1979), Benjamini and Hochberg (1995).',
   foot:'ATHAR · Science Club, Military Technological College · NASA Space Apps 2026 · Ibra' },
- ar: { dir:'rtl', lang:'English', nav:{home:'الرئيسية',platform:'المنصة',method:'المنهجية',about:'عن المشروع'},
+ ar: { dir:'rtl', lang:'English', nav:{home:'الرئيسية',platform:'المنصة',method:'المنهجية',about:'عن المشروع'}, oss:'مفتوح المصدر',
   h_eyebrow:'تحدي ناسا لتطبيقات الفضاء 2026 · محقق اتجاهات نظام الأرض', h_title:'أي متغيرات الأرض تتغيّر فعلاً؟',
   h_sub:'أثر يقرأ أكثر من 40 سنة من بيانات ناسا، ويرتّب ما يتغيّر، ويختبر هل كل اتجاه حقيقي، ويكتب ملف الحالة بالعربية والإنجليزية.',
   cta:'افتح المنصة', cta2:'كيف تعمل',
@@ -244,7 +244,7 @@ function about() {
 function render() {
   const t = T(); document.documentElement.lang = S.lang; document.documentElement.dir = t.dir; localStorage.setItem('athar-lang', S.lang);
   const r = (location.hash.replace('#/', '') || 'home').split('?')[0];
-  $('#nav').innerHTML = Object.entries(t.nav).map(([k, v]) => `<a href="#/${k === 'home' ? '' : k}" ${((r === k) || (k === 'home' && r === 'home')) ? 'aria-current="page"' : ''}>${v}</a>`).join('');
+  $('#nav').innerHTML = Object.entries(t.nav).map(([k, v]) => `<a href="#/${k === 'home' ? '' : k}" ${((r === k) || (k === 'home' && r === 'home')) ? 'aria-current="page"' : ''}>${v}</a>`).join('') + `<a href="https://github.com/thesaifalsaidi/athar-earth-trend-detective-mtc" target="_blank" rel="noopener">${t.oss} ↗</a>`;
   $('#lang').textContent = t.lang; $('#foot').innerHTML = `<p>${t.foot}</p>`;
   $('#view').innerHTML = ({ home, platform, method, about }[r] || home)();
   if (r === 'platform') { draw(); document.querySelectorAll('.tabs button').forEach(b => b.onclick = () => { S.tab = b.dataset.t; render(); }); }
