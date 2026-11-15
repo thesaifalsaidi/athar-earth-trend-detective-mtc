@@ -1,0 +1,7 @@
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+requests>=2.31
+pytest>=8.0
+pymannkendall>=1.4   # only used by the tests as an independent reference
+# optional (Earthdata granules): earthaccess xarray netcdf4
